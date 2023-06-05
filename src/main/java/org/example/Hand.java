@@ -1,17 +1,13 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Hand {
-    private String[] hands = { "ノーハンド", "ワンペア", "ツーペア", "スリーカード", "ストレート", "フラッシュ", "フルハウス", "フォーカード", "ストレートフラッシュ" };
-    private List<Card> sevenCards = new ArrayList<>();
+    private final String[] hands = { "ノーハンド", "ワンペア", "ツーペア", "スリーカード", "ストレート", "フラッシュ", "フルハウス", "フォーカード", "ストレートフラッシュ" };
+    private final List<Card> sevenCards = new ArrayList<>();
     private boolean isStraight = false;
     private boolean isFlash = false;
-    private int flashMark;
     List<Integer> sortedList = new ArrayList<>();
 
     List<Integer> markList = new ArrayList<>();
@@ -36,7 +32,7 @@ public class Hand {
         for (Map.Entry<Object, List<Integer>> entry : gMap.entrySet()) {
             if (entry.getValue().size() >= 5) {
                 isFlash = true;
-                flashMark = (int) entry.getKey();
+                int flashMark = (int) entry.getKey();
                 List<Integer> flashSortedList = new ArrayList<>();
                 for (Card card : sevenCards) {
                     if (card.getMark() == flashMark) {
@@ -60,7 +56,7 @@ public class Hand {
                 keepStraight.add(i);
                 int count = 0;
                 if (sortedList.get(i + j + 1) - sortedList.get(i + j) == 1
-                        || (sortedList.get(j) == sortedList.get(j + 1))) {
+                        || (Objects.equals(sortedList.get(j), sortedList.get(j + 1)))) {
                     count++;
                     keepStraight.add(i + j);
                     if (count == 4) {
