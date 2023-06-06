@@ -5,9 +5,10 @@ import java.io.IOException;
 
 public class Player {
     private String name="cpu";
-    private int money = 100;
+    public int money = 100;
     private Card[] Cards=new Card[2];
     private int ownHand;
+    public int drowNum=0;
 
     public int getOwnHand() {
         return ownHand;
@@ -51,14 +52,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
     }
 }
 
