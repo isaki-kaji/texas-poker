@@ -15,9 +15,6 @@ public class Main {
     private static int gameCount = 1;
     private static int bet = 0;
 
-    private static int playerDrowNum = 0;
-    private static int cpuDrowNum = 0;
-
     public static void main(String[] args) {
         var br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -142,10 +139,10 @@ public class Main {
             } else if (playerHand < cpuHand) {
                 System.out.println("\n\nあなたの負けです…");
             } else {
-                if (player.drowNum > cpu.drowNum) {
+                if (player.drawNum > cpu.drawNum) {
                     System.out.println("\nあなたの勝ちです!");
                     player.money += bet*2;
-                } else if (player.drowNum < cpu.drowNum) {
+                } else if (player.drawNum < cpu.drawNum) {
                     System.out.println("\nあなたの負けです…");
                 } else {
                     System.out.println("\n引き分けです。");
@@ -155,8 +152,8 @@ public class Main {
 
             System.out.println("所持金：" + player.money + "G");
             fieldCards = new Card[5];
-            player.drowNum = 0;
-            cpu.drowNum = 0;
+            player.drawNum = 0;
+            cpu.drawNum = 0;
             gameCount++;
         }
         if (player.money > 1000) {
@@ -221,19 +218,19 @@ public class Main {
         switch (hand) {
             case 7:
                 System.out.print(displayNumber(handNum[2]) + "の" + hands[hand]);
-                player.drowNum = handNum[2];
+                player.drawNum = handNum[2];
                 break;
             case 3:
                 System.out.print(displayNumber(handNum[1]) + "の" + hands[hand]);
-                player.drowNum = handNum[1];
+                player.drawNum = handNum[1];
                 break;
             case 2:
                 System.out.print(displayNumber(handNum[0]) + "の" + hands[hand]);
-                player.drowNum = handNum[0];
+                player.drawNum = handNum[0];
                 break;
             case 1:
                 System.out.print(displayNumber(handNum[0]) + "の" + hands[hand]);
-                player.drowNum = handNum[0];
+                player.drawNum = handNum[0];
                 break;
             default:
                 System.out.print(hands[hand]);

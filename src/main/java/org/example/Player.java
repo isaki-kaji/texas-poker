@@ -8,7 +8,7 @@ public class Player {
     public int money = 100;
     private Card[] Cards=new Card[2];
     private int ownHand;
-    public int drowNum=0;
+    public int drawNum =0;
 
     public int getOwnHand() {
         return ownHand;
