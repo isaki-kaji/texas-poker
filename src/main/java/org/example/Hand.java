@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Hand {
-    private List<Card> sevenCards = new ArrayList<>();
+    private final List<Card> sevenCards = new ArrayList<>();
 
     private boolean isStraight = false;
     private boolean isFlash = false;
@@ -15,7 +15,6 @@ public class Hand {
     private boolean isTwoPair = false;
     private boolean isOnePair = false;
 
-    private int flashMark;
     List<Integer> sortedList = new ArrayList<>();
     List<Integer> markList = new ArrayList<>();
     List<Integer> originalSorted=new ArrayList<>();
@@ -92,7 +91,7 @@ public class Hand {
         for (Map.Entry<Object, List<Integer>> entry : gMap.entrySet()) {
             if (entry.getValue().size() >= 5) {
                 isFlash = true;
-                flashMark = (int) entry.getKey();
+                int flashMark = (int) entry.getKey();
                 List<Integer> flashSortedList = new ArrayList<>();
                 for (Card card : sevenCards) {
                     if (card.getMark() == flashMark) {
