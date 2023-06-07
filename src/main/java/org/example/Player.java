@@ -7,16 +7,7 @@ public class Player {
     private String name="cpu";
     public int money = 100;
     private Card[] Cards=new Card[2];
-    private int ownHand;
     public int drawNum =0;
-
-    public int getOwnHand() {
-        return ownHand;
-    }
-
-    public void setOwnHand(int ownHand) {
-        this.ownHand = ownHand;
-    }
 
     public String getName() {
         return name;

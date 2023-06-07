@@ -13,7 +13,6 @@ public class Main {
     private static List<Card> cards = new ArrayList<>();
     static Card[] fieldCards = new Card[5];
     private static int gameCount = 1;
-    private static int bet = 0;
 
     public static void main(String[] args) {
         var br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +25,7 @@ public class Main {
 
         while (player.money > 0 && player.money < 1000) {
             if(gameCount!=1) {
-                System.out.println("\n次の対戦に進みます。\n＞");
+                System.out.print("\n次の対戦に進みます。\n＞");
                 try {
                     br.readLine();
                 } catch (IOException e) {
@@ -52,6 +51,7 @@ public class Main {
             System.out.println("\n【" + player.getName() + "の手札】");
             showCards(player.getCards());
 
+            int bet = 0;
             while (true) {
                 System.out.print("\n\nいくら掛けますか(1～" + player.money + "G)\n＞");
                 try {
@@ -108,7 +108,7 @@ public class Main {
                     }
                 }
             }else {
-                player.money-=bet;
+                player.money-= bet;
             }
 
             System.out.println("勝負!");
@@ -135,13 +135,13 @@ public class Main {
 
             if (playerHand > cpuHand) {
                 System.out.println("\n\nあなたの勝ちです!");
-                player.money += bet*2;
+                player.money += bet *2;
             } else if (playerHand < cpuHand) {
                 System.out.println("\n\nあなたの負けです…");
             } else {
                 if (player.drawNum > cpu.drawNum) {
                     System.out.println("\nあなたの勝ちです!");
-                    player.money += bet*2;
+                    player.money += bet *2;
                 } else if (player.drawNum < cpu.drawNum) {
                     System.out.println("\nあなたの負けです…");
                 } else {
@@ -199,41 +199,31 @@ public class Main {
         if (number < 9) {
             return (number + 2) + " ";
         } else {
-            switch (number) {
-                case 9:
-                    return "J ";
-                case 10:
-                    return "Q ";
-                case 11:
-                    return "K ";
-                case 12:
-                    return "A ";
-                default:
-                    return "";
-            }
+            return switch (number) {
+                case 9 -> "J ";
+                case 10 -> "Q ";
+                case 11 -> "K ";
+                case 12 -> "A ";
+                default -> "";
+            };
         }
     }
 
     public static void showHandName(int hand, int[] handNum, Player player) {
         switch (hand) {
-            case 7:
+            case 7 -> {
                 System.out.print(displayNumber(handNum[2]) + "の" + hands[hand]);
                 player.drawNum = handNum[2];
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.print(displayNumber(handNum[1]) + "の" + hands[hand]);
                 player.drawNum = handNum[1];
-                break;
-            case 2:
+            }
+            case 2, 1 -> {
                 System.out.print(displayNumber(handNum[0]) + "の" + hands[hand]);
                 player.drawNum = handNum[0];
-                break;
-            case 1:
-                System.out.print(displayNumber(handNum[0]) + "の" + hands[hand]);
-                player.drawNum = handNum[0];
-                break;
-            default:
-                System.out.print(hands[hand]);
+            }
+            default -> System.out.print(hands[hand]);
         }
     }
 }

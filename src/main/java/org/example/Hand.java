@@ -15,11 +15,10 @@ public class Hand {
     private boolean isTwoPair = false;
     private boolean isOnePair = false;
 
-    String handName;
-
     private int flashMark;
     List<Integer> sortedList = new ArrayList<>();
     List<Integer> markList = new ArrayList<>();
+    List<Integer> originalSorted=new ArrayList<>();
     int[] handNumbers = { 0, 0, 0 };
 
     public int decideHand(Card[] ownCards, Card[] fieldCards) {
@@ -28,17 +27,24 @@ public class Hand {
             this.sevenCards.add(card);
             sortedList.add(card.getNumber());
             markList.add(card.getMark());
+            if(!originalSorted.contains(card)) {
+                originalSorted.add(card.getNumber());
+            }
         }
         for (Card card : fieldCards) {
             this.sevenCards.add(card);
             sortedList.add(card.getNumber());
             markList.add(card.getMark());
+            if(!originalSorted.contains(card)) {
+                originalSorted.add(card.getNumber());
+            }
         }
 
         Collections.sort(sortedList);
+        Collections.sort(originalSorted);
 
         isFlash();
-        isStraight(sortedList);
+        isStraight(originalSorted);
         isPair();
 
         if (isStraightFlash) {
@@ -64,15 +70,11 @@ public class Hand {
 
     //ストレートを判定
     public void isStraight(List<Integer> list) {
-        outside: for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 6; j++) {
-                List<Integer> keepStraight = new ArrayList<>();
-                keepStraight.add(i);
-                int count = 0;
-                if ((list.get(i + j + 1) - list.get(i + j)) == 1
-                        || (list.get(i + j + 1) == list.get(i + j))) {
+        outside: for (int i = 0; i < list.size()-4; i++) {
+            int count = 0;
+            for (int j = 0; j < 4; j++) {
+                if ((list.get(i + j + 1) - list.get(i + j)) == 1) {
                     count++;
-                    keepStraight.add(i + j);
                     if (count == 4) {
                         isStraight = true;
                         break outside;
@@ -80,10 +82,8 @@ public class Hand {
                 } else {
                     break;
                 }
-
             }
         }
-
     }
 
     //フラッシュ、ストレートフラッシュを判定
@@ -99,6 +99,8 @@ public class Hand {
                         flashSortedList.add(card.getNumber());
                     }
                 }
+                List<Integer> originalFlashSorted= new ArrayList<>(new LinkedHashSet<>(flashSortedList));
+                Collections.sort(originalFlashSorted);
                 isStraight(flashSortedList);
                 if (isStraight && isFlash) {
                     isStraightFlash = true;
@@ -138,4 +140,6 @@ public class Hand {
             }
         }
     }
+
+
 }
