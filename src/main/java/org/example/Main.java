@@ -156,7 +156,7 @@ public class Main {
             cpu.drawNum = 0;
             gameCount++;
         }
-        if (player.money > 1000) {
+        if (player.money >= 1000) {
             System.out.println("\n所持金が1000Gを超えました。\nおめでとうございます!");
         } else {
             System.out.println("\n所持金が底をつきました。\n貴様は哀れな敗北者です。");
