@@ -26,7 +26,7 @@ public class Hand {
             this.sevenCards.add(card);
             sortedList.add(card.getNumber());
             markList.add(card.getMark());
-            if(!originalSorted.contains(card)) {
+            if(!originalSorted.contains(card.getNumber())) {
                 originalSorted.add(card.getNumber());
             }
         }
@@ -34,7 +34,7 @@ public class Hand {
             this.sevenCards.add(card);
             sortedList.add(card.getNumber());
             markList.add(card.getMark());
-            if(!originalSorted.contains(card)) {
+            if(!originalSorted.contains(card.getNumber())) {
                 originalSorted.add(card.getNumber());
             }
         }
