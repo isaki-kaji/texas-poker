@@ -100,7 +100,7 @@ public class Hand {
                 }
                 List<Integer> originalFlashSorted= new ArrayList<>(new LinkedHashSet<>(flashSortedList));
                 Collections.sort(originalFlashSorted);
-                isStraight(flashSortedList);
+                isStraight(originalFlashSorted);
                 if (isStraight && isFlash) {
                     isStraightFlash = true;
                 }
