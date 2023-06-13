@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Main {
-    private static String[] hands = { "ノーハンド", "ワンペア", "ツーペア", "スリーカード", "ストレート", "フラッシュ", "フルハウス", "フォーカード",
+    private static final String[] hands = { "ノーハンド", "ワンペア", "ツーペア", "スリーカード", "ストレート", "フラッシュ", "フルハウス", "フォーカード",
             "ストレートフラッシュ" };
     private static List<Card> cards = new ArrayList<>();
     static Card[] fieldCards = new Card[5];
@@ -129,7 +129,7 @@ public class Main {
 
             System.out.print(player.getName() + "：");
             showHandName(playerHand, hand1.handNumbers, player);
-            System.out.println("");
+            System.out.println();
             System.out.print("相手：");
             showHandName(cpuHand, hand2.handNumbers, cpu);
 
@@ -191,7 +191,7 @@ public class Main {
         } catch (Exception e) {
             System.out.print("");
         } finally {
-            System.out.println("");
+            System.out.println();
         }
     }
 

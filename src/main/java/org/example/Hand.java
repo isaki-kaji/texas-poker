@@ -98,9 +98,8 @@ public class Hand {
                         flashSortedList.add(card.getNumber());
                     }
                 }
-                List<Integer> originalFlashSorted= new ArrayList<>(new LinkedHashSet<>(flashSortedList));
-                Collections.sort(originalFlashSorted);
-                isStraight(originalFlashSorted);
+                Collections.sort(flashSortedList);
+                isStraight(flashSortedList);
                 if (isStraight && isFlash) {
                     isStraightFlash = true;
                 }
